@@ -28,13 +28,31 @@ class Task {
     }
 }
 
-public class Astra {
+public class Piggy {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         ArrayList<Task> tasks = new ArrayList<>();
 
         System.out.println("____________________________________________________________");
-        System.out.println(" Hello! I'm Astra!");
+        System.out.println(" Hello! I'm Piggy!");
+        System.out.println("            (,) ");
+        System.out.println("            _/");
+        System.out.println("        .--\"_\"--.");
+        System.out.println("      .\"   |I|   \".");
+        System.out.println("     /     |I|     \\");
+        System.out.println("    /      |I|      \\");
+        System.out.println("   ;       |I|       ;");
+        System.out.println("   |   _   '\"'   _   |");
+        System.out.println("  /|  |\\\\_,...,_//|  |\\");
+        System.out.println(" / |  |-\" 0   0 \"-|  | \\");
+        System.out.println("(//| /             \\ |\\\\)");
+        System.out.println(" ^ \\ |    _..._    | / ^");
+        System.out.println("    '|  .'     '.  |'");
+        System.out.println("     \\  | () () |  /");
+        System.out.println("    / '.`.     .'.' \\");
+        System.out.println("   /' / `\\`\"\"\"`/` \\ `\\");
+        System.out.println("  (/ /    `\"\"\"`    \\ \\)");
+        System.out.println("   ^`               `^");
         System.out.println(" What can I do for you?");
         System.out.println("____________________________________________________________");
 
