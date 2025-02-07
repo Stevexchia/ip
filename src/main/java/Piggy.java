@@ -1,40 +1,12 @@
 import java.util.Scanner;
-import java.util.ArrayList;
-
-class Task {
-    protected String description;
-    protected boolean isDone;
-
-    public Task(String description) {
-        this.description = description;
-        this.isDone = false;
-    }
-
-    public void markAsDone() {
-        this.isDone = true;
-    }
-
-    public void markAsNotDone() {
-        this.isDone = false;
-    }
-
-    public String getStatusIcon() {
-        return (isDone ? "X" : " "); // "X" for done, " " for not done
-    }
-
-    @Override
-    public String toString() {
-        return "[" + getStatusIcon() + "] " + description;
-    }
-}
 
 public class Piggy {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        ArrayList<Task> tasks = new ArrayList<>();
+        TaskList taskList = new TaskList();
 
         System.out.println("____________________________________________________________");
-        System.out.println(" Hello! I'm Piggy!");
+        System.out.println(" Oink! Hello I'm Piggy! :)");
         System.out.println("            (,) ");
         System.out.println("            _/");
         System.out.println("        .--\"_\"--.");
@@ -49,15 +21,15 @@ public class Piggy {
         System.out.println(" ^ \\ |    _..._    | / ^");
         System.out.println("    '|  .'     '.  |'");
         System.out.println("     \\  | () () |  /");
-        System.out.println("    / '.`.     .'.' \\");
-        System.out.println("   /' / `\\`\"\"\"`/` \\ `\\");
-        System.out.println("  (/ /    `\"\"\"`    \\ \\)");
-        System.out.println("   ^`               `^");
+        System.out.println("    / '..     .'.' \\");
+        System.out.println("   /' / \\\"\"\"/ \\ \\");
+        System.out.println("  (/ /    \"\"\"    \\ \\)");
+        System.out.println("   ^               ^");
         System.out.println(" What can I do for you?");
         System.out.println("____________________________________________________________");
 
         while (true) {
-            String userInput = scanner.nextLine().trim(); // Read and trim input
+            String userInput = scanner.nextLine().trim();
 
             if (userInput.equals("bye")) {
                 System.out.println("____________________________________________________________");
@@ -65,52 +37,39 @@ public class Piggy {
                 System.out.println("____________________________________________________________");
                 break;
             } else if (userInput.equals("list")) {
-                System.out.println("____________________________________________________________");
-                if (tasks.isEmpty()) {
-                    System.out.println(" No tasks added yet.");
-                } else {
-                    System.out.println(" Here are the tasks in your list:");
-                    for (int i = 0; i < tasks.size(); i++) {
-                        System.out.println(" " + (i + 1) + ". " + tasks.get(i));
-                    }
-                }
-                System.out.println("____________________________________________________________");
+                taskList.listTasks();
             } else if (userInput.startsWith("mark ")) {
                 try {
                     int index = Integer.parseInt(userInput.substring(5)) - 1;
-                    if (index >= 0 && index < tasks.size()) {
-                        tasks.get(index).markAsDone();
-                        System.out.println("____________________________________________________________");
-                        System.out.println(" Nice! I've marked this task as done:");
-                        System.out.println("   " + tasks.get(index));
-                        System.out.println("____________________________________________________________");
-                    } else {
-                        System.out.println(" Invalid task number.");
-                    }
+                    taskList.markTask(index, true);
                 } catch (NumberFormatException e) {
                     System.out.println(" Please enter a valid number.");
                 }
             } else if (userInput.startsWith("unmark ")) {
                 try {
                     int index = Integer.parseInt(userInput.substring(7)) - 1;
-                    if (index >= 0 && index < tasks.size()) {
-                        tasks.get(index).markAsNotDone();
-                        System.out.println("____________________________________________________________");
-                        System.out.println(" OK, I've marked this task as not done yet:");
-                        System.out.println("   " + tasks.get(index));
-                        System.out.println("____________________________________________________________");
-                    } else {
-                        System.out.println(" Invalid task number.");
-                    }
+                    taskList.markTask(index, false);
                 } catch (NumberFormatException e) {
                     System.out.println(" Please enter a valid number.");
                 }
+            } else if (userInput.startsWith("todo ")) {
+                taskList.addTask(new ToDo(userInput.substring(5)));
+            } else if (userInput.startsWith("deadline ")) {
+                String[] parts = userInput.substring(9).split(" /by ", 2);
+                if (parts.length < 2) {
+                    System.out.println(" Invalid format! Use: deadline <description> /by <time>");
+                } else {
+                    taskList.addTask(new Deadline(parts[0], parts[1]));
+                }
+            } else if (userInput.startsWith("event ")) {
+                String[] parts = userInput.substring(6).split(" /from | /to ", 3);
+                if (parts.length < 3) {
+                    System.out.println(" Invalid format! Use: event <description> /from <start> /to <end>");
+                } else {
+                    taskList.addTask(new Event(parts[0], parts[1], parts[2]));
+                }
             } else {
-                Task newTask = new Task(userInput);
-                tasks.add(newTask);
-                System.out.println("____________________________________________________________");
-                System.out.println(" added: " + userInput);
-                System.out.println("____________________________________________________________");
+                System.out.println(" Unknown command.");
             }
         }
 
