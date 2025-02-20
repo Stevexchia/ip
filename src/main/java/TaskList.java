@@ -1,50 +1,72 @@
 import java.util.ArrayList;
 
 public class TaskList {
-    private ArrayList<Task> tasks;
+    private final ArrayList<Task> tasks;
 
     public TaskList() {
         this.tasks = new ArrayList<>();
     }
 
-    public void addTask(Task task) {
+    public void addTask(Task task) throws PiggyException {
+        if (task.getDescription().isEmpty()) {
+            throw new PiggyException("OOPS!!! The description of a todo cannot be empty, piggy snout!");
+        }
+
         tasks.add(task);
-        System.out.println("____________________________________________________________");
-        System.out.println(" Got it. I've added this task:");
+        printSeparator();
+        System.out.println(" Oink! This task is now in my snout:");
         System.out.println("   " + task);
-        System.out.println(" Now you have " + tasks.size() + " tasks in the list.");
-        System.out.println("____________________________________________________________");
+        System.out.println(" Snort! You’ve got " + tasks.size() + " tasks in your pen.");
+        printSeparator();
     }
 
     public void listTasks() {
-        System.out.println("____________________________________________________________");
+        printSeparator();
         if (tasks.isEmpty()) {
-            System.out.println(" No tasks added yet.");
+            System.out.println(" Oink... No tasks in the mud here!");
         } else {
-            System.out.println(" Here are the tasks in your list:");
+            System.out.println(" Here’s what’s on my mind, oink oink!");
             for (int i = 0; i < tasks.size(); i++) {
                 System.out.println(" " + (i + 1) + ". " + tasks.get(i));
             }
         }
-        System.out.println("____________________________________________________________");
+        printSeparator();
     }
 
     public void markTask(int index, boolean done) {
-        if (index >= 0 && index < tasks.size()) {
+        try {
+            if (!isValidIndex(index)) {
+                throw new PiggyException("Oops, that task number doesn’t exist in my mud!");
+            }
+
             Task task = tasks.get(index);
+            printSeparator();
             if (done) {
                 task.markAsDone();
-                System.out.println("____________________________________________________________");
-                System.out.println(" Nice! I've marked this task as done:");
+                System.out.println(" Oink! I’ve finished munching on this task:");
             } else {
                 task.markAsNotDone();
-                System.out.println("____________________________________________________________");
-                System.out.println(" OK, I've marked this task as not done yet:");
+                System.out.println(" Uh-oh, not yet! I’ll leave this task for later:");
             }
             System.out.println("   " + task);
-            System.out.println("____________________________________________________________");
-        } else {
-            System.out.println(" Invalid task number.");
+            printSeparator();
+        } catch (PiggyException e) {
+            printErrorMessage(e.getMessage());
         }
     }
+
+    private boolean isValidIndex(int index) {
+        return index >= 0 && index < tasks.size();
+    }
+
+    private void printSeparator() {
+        System.out.println(Constants.SEPARATOR);
+    }
+
+    private void printErrorMessage(String message) {
+        System.out.println(Constants.SEPARATOR);
+        System.out.println(" " + message);
+        System.out.println(Constants.SEPARATOR);
+    }
+
 }
