@@ -69,7 +69,6 @@ public class TaskList {
         }
     }
 
-<<<<<<< HEAD
     public void deleteTask(int index) {
         try {
             if (!isValidIndex(index)) {
@@ -86,7 +85,9 @@ public class TaskList {
             printSeparator();
         } catch (PiggyException e) {
             printErrorMessage(e.getMessage());
-=======
+        }
+    }
+
     private void saveTasks() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))) {
             for (Task task : tasks) {
@@ -128,7 +129,6 @@ public class TaskList {
             }
         } catch (IOException e) {
             System.out.println("No existing tasks file found. Starting fresh!");
->>>>>>> branch-Level-7
         }
     }
 
