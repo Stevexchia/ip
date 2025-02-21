@@ -1,2 +1,3 @@
 T | 0 | run
 D | 1 | study | 2pm
+E | 0 | carnival | June | August

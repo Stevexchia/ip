@@ -48,22 +48,22 @@ public class TaskList {
 
     public void markTask(int index, boolean done) {
         try {
-            if (!isValidIndex(index)) {
+            if (isValidIndex(index)) {
+                Task task = tasks.get(index);
+                printSeparator();
+                if (done) {
+                    task.markAsDone();
+                    System.out.println(" Oink! I’ve finished munching on this task:");
+                } else {
+                    task.markAsNotDone();
+                    System.out.println(" Uh-oh, not yet! I’ll leave this task for later:");
+                }
+                saveTasks();
+                System.out.println("   " + task);
+                printSeparator();
+            } else {
                 throw new PiggyException("Oops, that task number doesn’t exist in my mud!");
             }
-
-            Task task = tasks.get(index);
-            printSeparator();
-            if (done) {
-                task.markAsDone();
-                System.out.println(" Oink! I’ve finished munching on this task:");
-            } else {
-                task.markAsNotDone();
-                System.out.println(" Uh-oh, not yet! I’ll leave this task for later:");
-            }
-            saveTasks();
-            System.out.println("   " + task);
-            printSeparator();
         } catch (PiggyException e) {
             printErrorMessage(e.getMessage());
         }
@@ -71,18 +71,19 @@ public class TaskList {
 
     public void deleteTask(int index) {
         try {
-            if (!isValidIndex(index)) {
+            if (isValidIndex(index)) {
+                Task removedTask = tasks.get(index);
+                tasks.remove(index);
+                saveTasks();
+
+                printSeparator();
+                System.out.println(" Snort! This task is forgotten in the haystack:");
+                System.out.println("   " + removedTask);
+                System.out.println(" Snort! You’ve got " + tasks.size() + " tasks in your pen.");
+                printSeparator();
+            } else {
                 throw new PiggyException("Oops, that task number doesn’t exist in my mud!");
             }
-
-            Task removedTask = tasks.get(index);
-            tasks.remove(index);
-
-            printSeparator();
-            System.out.println(" Snort! This task is forgotten in the haystack:");
-            System.out.println("   " + removedTask);
-            System.out.println(" Snort! You’ve got " + tasks.size() + " tasks in your pen.");
-            printSeparator();
         } catch (PiggyException e) {
             printErrorMessage(e.getMessage());
         }
@@ -105,7 +106,7 @@ public class TaskList {
             while ((line = reader.readLine()) != null) {
                 String[] taskDetails = line.split(" \\| ");
                 if (taskDetails.length > 1) {
-                    boolean isDone = taskDetails[1].equals("1");  // Determine if the task is done (1 means done, 0 means not done)
+                    boolean isDone = taskDetails[1].equals("1");  // Determines if the task is done
                     switch (taskDetails[0]) {
                         case "T":
                             ToDo toDo = new ToDo(taskDetails[2]);
