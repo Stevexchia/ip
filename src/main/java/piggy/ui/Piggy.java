@@ -59,6 +59,9 @@ public class Piggy {
                 case Constants.EVENT_COMMAND:
                     handleEventCommand(userInput);
                     break;
+                case Constants.DELETE_COMMAND:
+                    handleDeleteCommand(userInput);
+                    break;
                 default:
                     printUnknownCommand();
             }
@@ -83,6 +86,8 @@ public class Piggy {
             return Constants.BYE_COMMAND;
         } else if (userInput.equals(Constants.LIST_COMMAND)) {
             return Constants.LIST_COMMAND;
+        } else if (userInput.startsWith(Constants.DELETE_COMMAND)) {
+            return Constants.DELETE_COMMAND;
         } else {
             return "unknown";
         }
@@ -90,7 +95,7 @@ public class Piggy {
 
     private static void handleGoodbye() {
         printSeparator();
-        System.out.println("Oink, oink! I'm going for a nap in the mud. See you soon! \uD83D\uDC16");
+        System.out.println(Constants.BYE_MESSAGE);
         printSeparator();
         System.exit(0);
     }
@@ -139,6 +144,17 @@ public class Piggy {
             printSeparator();
         } else {
             taskList.addTask(new Event(parts[0].trim(), parts[1].trim(), parts[2].trim()));
+        }
+    }
+
+    private static void handleDeleteCommand(String userInput) {
+        try {
+            int taskNumberToDelete = Integer.parseInt(userInput.substring(7).trim()) - 1;
+            taskList.deleteTask(taskNumberToDelete);
+        } catch (NumberFormatException e) {
+            printSeparator();
+            System.out.println("Oink! Please enter a valid task number to delete!");
+            printSeparator();
         }
     }
 

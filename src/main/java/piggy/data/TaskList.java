@@ -61,6 +61,25 @@ public class TaskList {
         }
     }
 
+    public void deleteTask(int index) {
+        try {
+            if (!isValidIndex(index)) {
+                throw new PiggyException("Oops, that task number doesn’t exist in my mud!");
+            }
+
+            Task removedTask = tasks.get(index);
+            tasks.remove(index);
+
+            printSeparator();
+            System.out.println(" Snort! This task is forgotten in the haystack:");
+            System.out.println("   " + removedTask);
+            System.out.println(" Snort! You’ve got " + tasks.size() + " tasks in your pen.");
+            printSeparator();
+        } catch (PiggyException e) {
+            printErrorMessage(e.getMessage());
+        }
+    }
+
     private boolean isValidIndex(int index) {
         return index >= 0 && index < tasks.size();
     }
