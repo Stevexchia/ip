@@ -1,24 +1,31 @@
 package piggy.data;
 
+import java.io.*;
 import java.util.ArrayList;
 
 import piggy.task.Task;
 import piggy.exceptions.PiggyException;
 import piggy.util.Constants;
+import piggy.task.ToDo;
+import piggy.task.Deadline;
+import piggy.task.Event;
 
 public class TaskList {
     private final ArrayList<Task> tasks;
+    private static final String FILE_PATH = "PiggyOutput.txt";
 
     public TaskList() {
         this.tasks = new ArrayList<>();
+        loadTasks();
     }
 
     public void addTask(Task task) throws PiggyException {
         if (task.getDescription().isEmpty()) {
             throw new PiggyException("OOPS!!! The description of a todo cannot be empty, piggy snout!");
         }
-
         tasks.add(task);
+        saveTasks();
+
         printSeparator();
         System.out.println(" Oink! This task is now in my snout:");
         System.out.println("   " + task);
@@ -54,10 +61,55 @@ public class TaskList {
                 task.markAsNotDone();
                 System.out.println(" Uh-oh, not yet! I’ll leave this task for later:");
             }
+            saveTasks();
             System.out.println("   " + task);
             printSeparator();
         } catch (PiggyException e) {
             printErrorMessage(e.getMessage());
+        }
+    }
+
+    private void saveTasks() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))) {
+            for (Task task : tasks) {
+                writer.write(task.toFileString());
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            System.out.println("Error saving tasks to file: " + e.getMessage());
+        }
+    }
+
+    private void loadTasks() {
+        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] taskDetails = line.split(" \\| ");
+                if (taskDetails.length > 1) {
+                    boolean isDone = taskDetails[1].equals("1");  // Determine if the task is done (1 means done, 0 means not done)
+                    switch (taskDetails[0]) {
+                        case "T":
+                            ToDo toDo = new ToDo(taskDetails[2]);
+                            if (isDone) toDo.markAsDone();
+                            tasks.add(toDo);
+                            break;
+                        case "D":
+                            Deadline deadline = new Deadline(taskDetails[2], taskDetails[3]);
+                            if (isDone) deadline.markAsDone();
+                            tasks.add(deadline);
+                            break;
+                        case "E":
+                            Event event = new Event(taskDetails[2], taskDetails[3], taskDetails[4]);
+                            if (isDone) event.markAsDone();
+                            tasks.add(event);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("No existing tasks file found. Starting fresh!");
         }
     }
 
