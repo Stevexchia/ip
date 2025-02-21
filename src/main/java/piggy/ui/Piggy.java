@@ -90,7 +90,7 @@ public class Piggy {
 
     private static void handleGoodbye() {
         printSeparator();
-        System.out.println("Oink, oink! I'm going for a nap in the mud. See you soon! \uD83D\uDC16");
+        System.out.println(Constants.BYE_MESSAGE);
         printSeparator();
         System.exit(0);
     }
