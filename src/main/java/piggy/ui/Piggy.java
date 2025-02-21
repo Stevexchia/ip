@@ -1,4 +1,13 @@
+package piggy.ui;
+
 import java.util.Scanner;
+
+import piggy.util.Constants;
+import piggy.task.ToDo;
+import piggy.task.Deadline;
+import piggy.task.Event;
+import piggy.data.TaskList;
+import piggy.exceptions.PiggyException;
 
 public class Piggy {
     private static final Scanner scanner = new Scanner(System.in);
