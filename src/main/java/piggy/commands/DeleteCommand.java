@@ -19,13 +19,17 @@ public class DeleteCommand extends Command {
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws PiggyException {
-        Task removedTask = tasks.get(index); // Get the task before deleting it
-        tasks.deleteTask(index);
-        storage.save(tasks.getTasks());
+        try {
+            Task removedTask = tasks.get(index); // Get the task before deleting it
+            tasks.deleteTask(index);
+            storage.save(tasks.getTasks());
 
-        ui.showMessage("Snort! This task is forgotten in the haystack:");
-        ui.showMessage("  " + removedTask);
-        ui.showMessage("Snort! You’ve got " + tasks.size() + " tasks in your pen.");
+            ui.showMessage("Snort! This task is forgotten in the haystack:");
+            ui.showMessage("  " + removedTask);
+            ui.showMessage("Snort! You’ve got " + tasks.size() + " tasks in your pen.");
+        } catch (PiggyException e) {
+            ui.showError(e.getMessage()); // Display the error message
+        }
     }
 
     @Override

@@ -21,9 +21,7 @@ public class Ui {
     }
 
     public void showError(String message) {
-        printSeparator();
         System.out.println(message);
-        printSeparator();
     }
 
     public void showLoadingError() {

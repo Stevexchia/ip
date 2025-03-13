@@ -61,7 +61,10 @@ public class TaskList {
         return tasks.size();
     }
 
-    public Task get(int index) {
+    public Task get(int index) throws PiggyException {
+        if (!isValidIndex(index)) {
+            throw new PiggyException("Oops, that task number doesn’t exist in my mud!");
+        }
         return tasks.get(index);
     }
 

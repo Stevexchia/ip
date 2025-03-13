@@ -21,17 +21,18 @@ public class MarkCommand extends Command {
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws PiggyException {
-        // Delegate task marking/unmarking to TaskList
-        tasks.markTask(index, isDone);
-
-        Task task = tasks.get(index); // Get the task after it's been marked/unmarked
-        if (isDone) {
-            ui.showMessage("Nice! I've marked this task as done:\n  " + task);
-        } else {
-            ui.showMessage("Okay! I've unmarked this task:\n  " + task);
+        try {
+            tasks.markTask(index, isDone);
+            Task task = tasks.get(index); // Get the task after it's been marked/unmarked
+            if (isDone) {
+                ui.showMessage("Nice! I've marked this task as done:\n  " + task);
+            } else {
+                ui.showMessage("Okay! I've unmarked this task:\n  " + task);
+            }
+            storage.save(tasks.getTasks());
+        } catch (PiggyException e) {
+            ui.showError(e.getMessage()); // Display the error message
         }
-
-        storage.save(tasks.getTasks()); // Ensure changes are saved
     }
 
     @Override

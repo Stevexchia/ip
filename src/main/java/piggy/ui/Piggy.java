@@ -38,7 +38,6 @@ public class Piggy {
             }
             ui.showLine(); // Show separator after command execution
         }
-        System.out.println(Constants.BYE_MESSAGE);
     }
 
     public static void main(String[] args) {
