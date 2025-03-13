@@ -5,6 +5,7 @@ import piggy.task.Task;
 import piggy.ui.Ui;
 import piggy.data.Storage;
 import piggy.exceptions.PiggyException;
+import piggy.util.Constants;
 
 public class DeleteCommand extends Command {
     private final int index;
@@ -24,11 +25,11 @@ public class DeleteCommand extends Command {
             tasks.deleteTask(index);
             storage.save(tasks.getTasks());
 
-            ui.showMessage("Snort! This task is forgotten in the haystack:");
+            ui.showMessage(Constants.TASK_DELETED_MESSAGE);
             ui.showMessage("  " + removedTask);
-            ui.showMessage("Snort! You’ve got " + tasks.size() + " tasks in your pen.");
+            ui.showMessage(String.format(Constants.TASKS_COUNT_MESSAGE, tasks.size()));
         } catch (PiggyException e) {
-            ui.showError(e.getMessage()); // Display the error message
+            ui.showError(e.getMessage());
         }
     }
 

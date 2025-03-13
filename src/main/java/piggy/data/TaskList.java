@@ -2,6 +2,7 @@ package piggy.data;
 
 import piggy.task.Task;
 import piggy.exceptions.PiggyException;
+import piggy.util.Constants;
 
 import java.util.ArrayList;
 
@@ -18,21 +19,21 @@ public class TaskList {
 
     public void addTask(Task task) throws PiggyException {
         if (task.getDescription().isEmpty()) {
-            throw new PiggyException("OOPS!!! The description of a todo cannot be empty, piggy snout!");
+            throw new PiggyException(Constants.INVALID_FORMAT_TODO_MESSAGE);
         }
         tasks.add(task);
     }
 
     public void deleteTask(int index) throws PiggyException {
         if (!isValidIndex(index)) {
-            throw new PiggyException("Oops, that task number doesn’t exist in my mud!");
+            throw new PiggyException(Constants.INVALID_TASK_NUMBER_MESSAGE);
         }
         Task removedTask = tasks.remove(index);
     }
 
     public void markTask(int index, boolean isDone) throws PiggyException {
         if (!isValidIndex(index)) {
-            throw new PiggyException("Oops, that task number doesn’t exist in my mud!");
+            throw new PiggyException(Constants.INVALID_TASK_NUMBER_MESSAGE);
         }
         Task task = tasks.get(index);
         if (isDone) {
@@ -48,9 +49,9 @@ public class TaskList {
 
     public void listTasks() {
         if (tasks.isEmpty()) {
-            System.out.println(" Oink... No tasks in the mud here!");
+            System.out.println(Constants.NO_TASKS_MESSAGE);
         } else {
-            System.out.println(" Here’s what’s on my mind, oink oink!");
+            System.out.println(Constants.TASKS_LIST_HEADER);
             for (int i = 0; i < tasks.size(); i++) {
                 System.out.println(" " + (i + 1) + ". " + tasks.get(i));
             }
@@ -63,7 +64,7 @@ public class TaskList {
 
     public Task get(int index) throws PiggyException {
         if (!isValidIndex(index)) {
-            throw new PiggyException("Oops, that task number doesn’t exist in my mud!");
+            throw new PiggyException(Constants.INVALID_TASK_NUMBER_MESSAGE);
         }
         return tasks.get(index);
     }

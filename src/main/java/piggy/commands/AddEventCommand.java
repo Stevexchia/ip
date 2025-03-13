@@ -5,6 +5,7 @@ import piggy.ui.Ui;
 import piggy.data.Storage;
 import piggy.exceptions.PiggyException;
 import piggy.task.Event;
+import piggy.util.Constants;
 
 public class AddEventCommand extends Command {
     private final String description;
@@ -14,7 +15,7 @@ public class AddEventCommand extends Command {
     public AddEventCommand(String arguments) throws PiggyException {
         String[] parts = arguments.split(" /from | /to ", 3);
         if (parts.length < 3) {
-            throw new PiggyException("Oink! Invalid format! Use: event <description> /from <start> /to <end>");
+            throw new PiggyException(Constants.INVALID_FORMAT_EVENT_MESSAGE);
         }
         this.description = parts[0].trim();
         this.from = parts[1].trim();
@@ -27,9 +28,9 @@ public class AddEventCommand extends Command {
         tasks.addTask(event);
         storage.save(tasks.getTasks());
 
-        ui.showMessage("Oink! This task is now in my snout:");
+        ui.showMessage(Constants.TASK_ADDED_MESSAGE);
         ui.showMessage("  " + event);
-        ui.showMessage("Snort! You’ve got " + tasks.size() + " tasks in your pen.");
+        ui.showMessage(String.format(Constants.TASKS_COUNT_MESSAGE, tasks.size()));
     }
 
     @Override

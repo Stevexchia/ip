@@ -5,6 +5,7 @@ import piggy.task.Task;
 import piggy.ui.Ui;
 import piggy.data.Storage;
 import piggy.exceptions.PiggyException;
+import piggy.util.Constants;
 
 public class MarkCommand extends Command {
     private final int index;
@@ -15,7 +16,7 @@ public class MarkCommand extends Command {
             this.index = Integer.parseInt(arguments.trim()) - 1; // Adjust for 0-based index
             this.isDone = isDone;
         } catch (NumberFormatException e) {
-            throw new PiggyException("Oink! Please enter a valid task number.");
+            throw new PiggyException(Constants.INVALID_TASK_NUMBER_MESSAGE);
         }
     }
 
@@ -25,13 +26,14 @@ public class MarkCommand extends Command {
             tasks.markTask(index, isDone);
             Task task = tasks.get(index); // Get the task after it's been marked/unmarked
             if (isDone) {
-                ui.showMessage("Nice! I've marked this task as done:\n  " + task);
+                ui.showMessage(Constants.TASK_MARKED_MESSAGE);
             } else {
-                ui.showMessage("Okay! I've unmarked this task:\n  " + task);
+                ui.showMessage(Constants.TASK_UNMARKED_MESSAGE);
             }
+            ui.showMessage("  " + task);
             storage.save(tasks.getTasks());
         } catch (PiggyException e) {
-            ui.showError(e.getMessage()); // Display the error message
+            ui.showError(e.getMessage());
         }
     }
 

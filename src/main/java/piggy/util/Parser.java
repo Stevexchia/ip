@@ -5,9 +5,9 @@ import piggy.exceptions.PiggyException;
 
 public class Parser {
     public static Command parse(String fullCommand) throws PiggyException {
-        String[] parts = fullCommand.split(" ", 2); // Split into command and arguments
-        String commandWord = parts[0].trim(); // Get the command word
-        String arguments = parts.length > 1 ? parts[1].trim() : ""; // Get the arguments (if any)
+        String[] parts = fullCommand.split(Constants.SPACE, 2);
+        String commandWord = parts[0].trim();
+        String arguments = parts.length > Constants.MAX_ARGUMENTS_LENGTH ? parts[1].trim() : "";
 
         switch (commandWord) {
             case Constants.TODO_COMMAND:

@@ -5,6 +5,7 @@ import piggy.ui.Ui;
 import piggy.data.Storage;
 import piggy.exceptions.PiggyException;
 import piggy.task.ToDo;
+import piggy.util.Constants;
 
 public class AddTodoCommand extends Command {
     private final String description;
@@ -19,9 +20,9 @@ public class AddTodoCommand extends Command {
         tasks.addTask(todo);
         storage.save(tasks.getTasks());
 
-        ui.showMessage("Oink! This task is now in my snout:");
+        ui.showMessage(Constants.TASK_ADDED_MESSAGE);
         ui.showMessage("  " + todo);
-        ui.showMessage("Snort! You’ve got " + tasks.size() + " tasks in your pen.");
+        ui.showMessage(String.format(Constants.TASKS_COUNT_MESSAGE, tasks.size()));
     }
 
     @Override
