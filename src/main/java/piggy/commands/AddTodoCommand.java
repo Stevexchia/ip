@@ -7,6 +7,9 @@ import piggy.exceptions.PiggyException;
 import piggy.task.ToDo;
 import piggy.util.Constants;
 
+/**
+ * Represents a command to add a todo task.
+ */
 public class AddTodoCommand extends Command {
     private final String description;
 
@@ -14,6 +17,14 @@ public class AddTodoCommand extends Command {
         this.description = description;
     }
 
+    /**
+     * Executes the command to add a todo task.
+     *
+     * @param tasks The TaskList to add the task to.
+     * @param ui The Ui to interact with the user.
+     * @param storage The Storage to save the tasks.
+     * @throws PiggyException If the task description is empty.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws PiggyException {
         ToDo todo = new ToDo(description);

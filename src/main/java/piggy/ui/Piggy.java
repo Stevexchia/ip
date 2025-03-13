@@ -7,11 +7,20 @@ import piggy.util.Constants;
 import piggy.util.Parser;
 import piggy.commands.Command;
 
+/**
+ * The main class for the Piggy task manager application.
+ * This class initializes the application and runs the command loop.
+ */
 public class Piggy {
     private final Storage storage;
     private TaskList tasks;
     private final Ui ui;
 
+    /**
+     * Constructs a Piggy instance with the specified file path for storage.
+     *
+     * @param filePath The path to the file where tasks are stored.
+     */
     public Piggy(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -23,6 +32,10 @@ public class Piggy {
         }
     }
 
+    /**
+     * Runs the Piggy application. Displays the welcome message and processes user commands
+     * until the exit command is given.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;

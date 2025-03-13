@@ -2,37 +2,79 @@ package piggy.task;
 
 import piggy.exceptions.PiggyException;
 
+/**
+ * Represents a generic task in the task manager.
+ */
 public abstract class Task {
     protected String description;
     protected boolean isDone;
 
+    /**
+     * Constructs a Task with the given description.
+     *
+     * @param description The description of the task.
+     */
     public Task(String description) {
         this.description = description;
         this.isDone = false;
     }
 
+    /**
+     * Returns the description of the task.
+     *
+     * @return The task description.
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * Marks the task as done.
+     */
     public void markAsDone() {
         this.isDone = true;
     }
 
+    /**
+     * Marks the task as not done.
+     */
     public void markAsNotDone() {
         this.isDone = false;
     }
 
+    /**
+     * Returns the status icon of the task.
+     *
+     * @return "X" if the task is done, " " otherwise.
+     */
     public String getStatusIcon() {
         return isDone ? "X" : " ";
     }
 
+    /**
+     * Returns a string representation of the task.
+     *
+     * @return The string representation of the task.
+     */
+    @Override
     public String toString() {
         return "[" + getStatusIcon() + "] " + description;
     }
 
+    /**
+     * Returns a string representation of the task for saving to a file.
+     *
+     * @return The string representation of the task in file format.
+     */
     public abstract String toFileString();
 
+    /**
+     * Creates a Task object from a string representation in a file.
+     *
+     * @param fileString The string representation of the task from the file.
+     * @return The Task object.
+     * @throws PiggyException If the file string is invalid.
+     */
     public static Task fromFileString(String fileString) throws PiggyException {
         String[] parts = fileString.split(" \\| ");
         if (parts.length < 3) {

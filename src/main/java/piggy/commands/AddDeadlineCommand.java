@@ -7,6 +7,9 @@ import piggy.exceptions.PiggyException;
 import piggy.task.Deadline;
 import piggy.util.Constants;
 
+/**
+ * Represents a command to add a deadline task.
+ */
 public class AddDeadlineCommand extends Command {
     private final String description;
     private final String by;
@@ -20,6 +23,14 @@ public class AddDeadlineCommand extends Command {
         this.by = parts[1].trim();
     }
 
+    /**
+     * Executes the command to add a deadline task.
+     *
+     * @param tasks The TaskList to add the task to.
+     * @param ui The Ui to interact with the user.
+     * @param storage The Storage to save the tasks.
+     * @throws PiggyException If there is an error adding the task.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws PiggyException {
         Deadline deadline = new Deadline(description, by);

@@ -7,6 +7,9 @@ import piggy.exceptions.PiggyException;
 import piggy.task.Event;
 import piggy.util.Constants;
 
+/**
+ * Represents a command to add an event task.
+ */
 public class AddEventCommand extends Command {
     private final String description;
     private final String from;
@@ -22,6 +25,14 @@ public class AddEventCommand extends Command {
         this.to = parts[2].trim();
     }
 
+    /**
+     * Executes the command to add an event task.
+     *
+     * @param tasks The TaskList to add the task to.
+     * @param ui The Ui to interact with the user.
+     * @param storage The Storage to save the tasks.
+     * @throws PiggyException If there is an error adding the task.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws PiggyException {
         Event event = new Event(description, from, to);
