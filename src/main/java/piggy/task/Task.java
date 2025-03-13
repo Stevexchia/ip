@@ -5,6 +5,10 @@ import piggy.exceptions.PiggyException;
 /**
  * Represents a generic task in the task manager.
  */
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 public abstract class Task {
     protected String description;
     protected boolean isDone;
@@ -91,13 +95,26 @@ public abstract class Task {
                 if (parts.length < 4) {
                     throw new PiggyException("Invalid deadline format in file.");
                 }
-                yield new Deadline(description, parts[3]);
+                try {
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+                    LocalDateTime by = LocalDateTime.parse(parts[3], formatter);
+                    yield new Deadline(description, by);
+                } catch (DateTimeParseException e) {
+                    throw new PiggyException("Invalid date/time format in file for deadline.");
+                }
             }
             case "E" -> {
                 if (parts.length < 5) {
                     throw new PiggyException("Invalid event format in file.");
                 }
-                yield new Event(description, parts[3], parts[4]);
+                try {
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+                    LocalDateTime from = LocalDateTime.parse(parts[3], formatter);
+                    LocalDateTime to = LocalDateTime.parse(parts[4], formatter);
+                    yield new Event(description, from, to);
+                } catch (DateTimeParseException e) {
+                    throw new PiggyException("Invalid date/time format in file for event.");
+                }
             }
             default -> throw new PiggyException("Unknown task type in file.");
         };

@@ -2,6 +2,7 @@ package piggy.data;
 
 import piggy.task.Task;
 import piggy.exceptions.PiggyException;
+import piggy.util.Constants;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ public class Storage {
                 file.getParentFile().mkdirs(); // Create parent directories if they don't exist
                 file.createNewFile();
             } catch (IOException e) {
-                throw new PiggyException("Error creating tasks file.");
+                throw new PiggyException(Constants.CREATE_ERROR);
             }
         }
 
@@ -47,7 +48,7 @@ public class Storage {
                 tasks.add(Task.fromFileString(line));
             }
         } catch (IOException e) {
-            throw new PiggyException("Error loading tasks from file.");
+            throw new PiggyException(Constants.LOAD_ERROR);
         }
         return tasks;
     }
@@ -65,7 +66,7 @@ public class Storage {
                 writer.newLine();
             }
         } catch (IOException e) {
-            throw new PiggyException("Error saving tasks to file.");
+            throw new PiggyException(Constants.SAVE_ERROR);
         }
     }
 }

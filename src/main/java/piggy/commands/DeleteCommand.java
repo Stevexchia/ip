@@ -14,7 +14,7 @@ public class DeleteCommand extends Command {
         try {
             this.index = Integer.parseInt(arguments.trim()) - 1;
         } catch (NumberFormatException e) {
-            throw new PiggyException("Oink! Please enter a valid task number.");
+            throw new PiggyException(Constants.INVALID_TASK_NUMBER_MESSAGE);
         }
     }
 

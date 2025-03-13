@@ -1,9 +1,13 @@
 package piggy.data;
 
+import piggy.task.Deadline;
+import piggy.task.Event;
 import piggy.task.Task;
 import piggy.exceptions.PiggyException;
 import piggy.util.Constants;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /**
@@ -116,5 +120,49 @@ public class TaskList {
      */
     private boolean isValidIndex(int index) {
         return index >= 0 && index < tasks.size();
+    }
+
+    public void findTasksByKeyword(String keyword) {
+        boolean hasMatches = false;
+
+        for (int i = 0; i < tasks.size(); i++) {
+            Task task = tasks.get(i);
+            if (task.getDescription().toLowerCase().contains(keyword.toLowerCase())) {
+                // Print the header only if this is the first match
+                if (!hasMatches) {
+                    System.out.println(Constants.FIND_MESSAGE);
+                }
+                System.out.println(" " + (i + 1) + "." + task);
+                hasMatches = true;
+            }
+        }
+
+        if (!hasMatches) {
+            System.out.println(Constants.INVALID_FIND_MESSAGE + keyword + "'!");
+
+    public void filterTasksByDate(LocalDate date) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy");
+
+        boolean hasTasks = false;
+
+        for (Task task : tasks) {
+            if (task instanceof Deadline deadline) {
+                if (deadline.getBy().toLocalDate().equals(date)) {
+                    System.out.println("ZZZ.. You have these tasks on " + date.format(formatter) + ":");
+                    System.out.println("  " + task);
+                    hasTasks = true; // Set flag to true if a task is found
+                }
+            } else if (task instanceof Event event) {
+                if (event.getFrom().toLocalDate().equals(date) || event.getTo().toLocalDate().equals(date)) {
+                    System.out.println("ZZZ.. You have these tasks on " + date.format(formatter) + ":");
+                    System.out.println("  " + task);
+                    hasTasks = true; // Set flag to true if a task is found
+                }
+            }
+        }
+
+        if (!hasTasks) {
+            System.out.println(" Oink... Nothing to do on this day, let's chill!");
+        }
     }
 }
