@@ -77,6 +77,24 @@ public class TaskList {
         return index >= 0 && index < tasks.size();
     }
 
+    public void findTasksByKeyword(String keyword) {
+        boolean hasMatches = false;
+
+        for (int i = 0; i < tasks.size(); i++) {
+            Task task = tasks.get(i);
+            if (task.getDescription().toLowerCase().contains(keyword.toLowerCase())) {
+                // Print the header only if this is the first match
+                if (!hasMatches) {
+                    System.out.println(Constants.FIND_MESSAGE);
+                }
+                System.out.println(" " + (i + 1) + "." + task);
+                hasMatches = true;
+            }
+        }
+
+        if (!hasMatches) {
+            System.out.println(Constants.INVALID_FIND_MESSAGE + keyword + "'!");
+
     public void filterTasksByDate(LocalDate date) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy");
 

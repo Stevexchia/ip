@@ -36,7 +36,8 @@ public class Constants {
     public static final String DEADLINE_COMMAND = "deadline";
     public static final String EVENT_COMMAND = "event";
     public static final String DELETE_COMMAND = "delete";
-    public static final String FINDDATE_COMMAND = "find";
+    public static final String FIND_COMMAND = "find";
+    public static final String FINDDATE_COMMAND = "find date";
 
     // Message-related constants
     public static final String BYE_MESSAGE = "Oink, oink! I'm going for a nap in the mud. See you soon! \uD83D\uDC16";
@@ -53,6 +54,12 @@ public class Constants {
     public static final String TASK_UNMARKED_MESSAGE = "Okay! I've unmarked this task:";
     public static final String NO_TASKS_MESSAGE = "Oink... No tasks in the mud here!";
     public static final String TASKS_LIST_HEADER = "Here’s what’s on my mind, oink oink!";
+    public static final String INVALID_FIND_COMMAND = "Oink! Please provide a keyword to search for!";
+    public static final String CREATE_ERROR = "Oink! Error creating tasks file.";
+    public static final String LOAD_ERROR = "Oink! Error loading tasks from file.";
+    public static final String SAVE_ERROR = "Oink! Error saving tasks to file.";
+    public static final String FIND_MESSAGE = "I found all of these delicious tasks!:";
+    public static final String INVALID_FIND_MESSAGE = "Oink... No tasks match the keyword '";
     public static final String DATE_TIME = "yyyy-MM-dd HHmm";
 
     // General constants
