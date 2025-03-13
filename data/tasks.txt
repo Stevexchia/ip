@@ -4,3 +4,8 @@ T | 1 | help
 E | 0 | h | 2 | 9
 T | 0 | 2
 T | 1 | m fj
+T | 0 | run
+T | 0 | running
+E | 0 | major day of run | marina | barrage
+T | 0 | hehe
+T | 0 | run
