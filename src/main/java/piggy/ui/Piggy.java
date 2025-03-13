@@ -3,7 +3,6 @@ package piggy.ui;
 import piggy.data.Storage;
 import piggy.data.TaskList;
 import piggy.exceptions.PiggyException;
-import piggy.util.Constants;
 import piggy.util.Parser;
 import piggy.commands.Command;
 

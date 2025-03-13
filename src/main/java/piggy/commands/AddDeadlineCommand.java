@@ -7,8 +7,8 @@ import piggy.exceptions.PiggyException;
 import piggy.task.Deadline;
 import piggy.util.Constants;
 
-/**
- * Represents a command to add a deadline task.
+/*
+  Represents a command to add a deadline task.
  */
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

@@ -13,7 +13,7 @@ public class MarkCommand extends Command {
 
     public MarkCommand(String arguments, boolean isDone) throws PiggyException {
         try {
-            this.index = Integer.parseInt(arguments.trim()) - 1; // Adjust for 0-based index
+            this.index = Integer.parseInt(arguments.trim()) - Constants.TASK_INDEX_OFFSET; // Adjust for 0-based index
             this.isDone = isDone;
         } catch (NumberFormatException e) {
             throw new PiggyException(Constants.INVALID_TASK_NUMBER_MESSAGE);

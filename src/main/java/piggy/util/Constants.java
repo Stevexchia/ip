@@ -8,7 +8,7 @@ public class Constants {
     public static final String SEPARATOR = "____________________________________________________________";
     public static final String PIG_INTRO = """
              Oink! Welcome to Piggy's Task Manager! 🐷
-             
+            \s
                          (,)
                          _/
                     .--"_"--.
@@ -27,8 +27,8 @@ public class Constants {
                 /' / \\""\"/ \\ \\
                (/ /    ""\"    \\ \\)
                 ^               ^
-                
-            Let's get muddy with some tasks! """;
+               \s
+            Let's get muddy with some tasks!\s""";
 
     // Command-related constants
     public static final String BYE_COMMAND = "bye";
@@ -40,7 +40,7 @@ public class Constants {
     public static final String EVENT_COMMAND = "event";
     public static final String DELETE_COMMAND = "delete";
     public static final String FIND_COMMAND = "find";
-    public static final String FINDDATE_COMMAND = "find date";
+    public static final String FILTERDATE_COMMAND = "filter";
 
     // Message-related constants
     public static final String BYE_MESSAGE = "Oink, oink! I'm going for a nap in the mud. See you soon! \uD83D\uDC16";

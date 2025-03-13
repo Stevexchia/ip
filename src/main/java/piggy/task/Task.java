@@ -2,8 +2,8 @@ package piggy.task;
 
 import piggy.exceptions.PiggyException;
 
-/**
- * Represents a generic task in the task manager.
+/*
+  Represents a generic task in the task manager.
  */
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

@@ -7,8 +7,8 @@ import piggy.exceptions.PiggyException;
 import piggy.task.Event;
 import piggy.util.Constants;
 
-/**
- * Represents a command to add an event task.
+/*
+  Represents a command to add an event task.
  */
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

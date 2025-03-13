@@ -12,7 +12,7 @@ public class DeleteCommand extends Command {
 
     public DeleteCommand(String arguments) throws PiggyException {
         try {
-            this.index = Integer.parseInt(arguments.trim()) - 1;
+            this.index = Integer.parseInt(arguments.trim()) - Constants.TASK_INDEX_OFFSET;
         } catch (NumberFormatException e) {
             throw new PiggyException(Constants.INVALID_TASK_NUMBER_MESSAGE);
         }

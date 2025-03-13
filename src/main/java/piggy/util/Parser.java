@@ -38,8 +38,8 @@ public class Parser {
                 return new ExitCommand();
             case Constants.FIND_COMMAND:
                 return new FindCommand(arguments);
-            case Constants.FINDDATE_COMMAND:
-                return new FindByDateCommand(arguments);
+            case Constants.FILTERDATE_COMMAND:
+                return new FilterDateCommand(arguments);
             default:
                 throw new PiggyException(Constants.UNKNOWN_COMMAND_MESSAGE);
         }

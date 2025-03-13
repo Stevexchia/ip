@@ -9,15 +9,15 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-public class FindByDateCommand extends Command {
+public class FilterDateCommand extends Command {
     private final LocalDate date;
 
-    public FindByDateCommand(String arguments) throws PiggyException {
+    public FilterDateCommand(String arguments) throws PiggyException {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             this.date = LocalDate.parse(arguments.trim(), formatter);
         } catch (DateTimeParseException e) {
-            throw new PiggyException("Oink! Invalid date format! Use: findbydate <yyyy-MM-dd>");
+            throw new PiggyException("Oink! Invalid date format! Use: filter <yyyy-MM-dd>");
         }
     }
 

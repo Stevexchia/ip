@@ -116,7 +116,6 @@ public class TaskList {
      *
      * @param index The index of the task.
      * @return The task at the specified index.
-     * @throws PiggyException If the index is invalid.
      */
     private boolean isValidIndex(int index) {
         return index >= 0 && index < tasks.size();
@@ -139,29 +138,45 @@ public class TaskList {
 
         if (!hasMatches) {
             System.out.println(Constants.INVALID_FIND_MESSAGE + keyword + "'!");
+        }
+    }
 
+    /**
+     * Filters and displays tasks that occur on the specified date.
+     * This includes deadlines due on the date and events that start or end on the date.
+     *
+     * @param date The date to filter tasks by.
+     */
     public void filterTasksByDate(LocalDate date) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy");
-
         boolean hasTasks = false;
+        StringBuilder tasksOnDate = new StringBuilder();
 
+        // Check each task for a match
         for (Task task : tasks) {
             if (task instanceof Deadline deadline) {
                 if (deadline.getBy().toLocalDate().equals(date)) {
-                    System.out.println("ZZZ.. You have these tasks on " + date.format(formatter) + ":");
-                    System.out.println("  " + task);
+                    if (!hasTasks) {
+                        tasksOnDate.append("ZZZ.. You have these tasks on ").append(date.format(formatter)).append(":\n");
+                    }
+                    tasksOnDate.append("  ").append(task).append("\n");
                     hasTasks = true; // Set flag to true if a task is found
                 }
             } else if (task instanceof Event event) {
                 if (event.getFrom().toLocalDate().equals(date) || event.getTo().toLocalDate().equals(date)) {
-                    System.out.println("ZZZ.. You have these tasks on " + date.format(formatter) + ":");
-                    System.out.println("  " + task);
+                    if (!hasTasks) {
+                        tasksOnDate.append("ZZZ.. You have these tasks on ").append(date.format(formatter)).append(":\n");
+                    }
+                    tasksOnDate.append("  ").append(task).append("\n");
                     hasTasks = true; // Set flag to true if a task is found
                 }
             }
         }
 
-        if (!hasTasks) {
+        // Print the result
+        if (hasTasks) {
+            System.out.println(tasksOnDate.toString().trim()); // Print all matching tasks
+        } else {
             System.out.println(" Oink... Nothing to do on this day, let's chill!");
         }
     }

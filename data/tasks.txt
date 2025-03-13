@@ -1,14 +1,4 @@
-D | 1 | h | 2
-E | 0 | h | 2 | 3
-T | 1 | help
-E | 0 | h | 2 | 9
-T | 0 | 2
-T | 1 | m fj
 T | 0 | run
-T | 0 | running
-E | 0 | major day of run | marina | barrage
-T | 0 | hehe
-T | 0 | run
-T | 1 | 7
-D | 0 | y | 2002-08-11 2243
-E | 1 | mf | 2037-09-23 2023 | 2002-05-01 1928
+T | 0 | ergo
+T | 1 | running
+E | 0 | run | 2002-03-20 2311 | 2002-06-11 2039
