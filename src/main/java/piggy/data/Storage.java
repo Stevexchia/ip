@@ -7,13 +7,27 @@ import piggy.util.Constants;
 import java.io.*;
 import java.util.ArrayList;
 
+/**
+ * Handles loading and saving tasks to a file.
+ */
 public class Storage {
     private final String filePath;
 
+    /**
+     * Constructs a Storage object with the specified file path.
+     *
+     * @param filePath The path to the file where tasks are stored.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Loads tasks from the file.
+     *
+     * @return A list of tasks loaded from the file.
+     * @throws PiggyException If there is an error loading tasks.
+     */
     public ArrayList<Task> load() throws PiggyException {
         ArrayList<Task> tasks = new ArrayList<>();
         File file = new File(filePath);
@@ -39,6 +53,12 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Saves tasks to the file.
+     *
+     * @param tasks The list of tasks to save.
+     * @throws PiggyException If there is an error saving tasks.
+     */
     public void save(ArrayList<Task> tasks) throws PiggyException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             for (Task task : tasks) {

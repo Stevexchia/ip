@@ -3,7 +3,17 @@ package piggy.util;
 import piggy.commands.*;
 import piggy.exceptions.PiggyException;
 
+/**
+ * Parses user input into commands that the application can execute.
+ */
 public class Parser {
+    /**
+     * Parses the full command entered by the user and returns the corresponding command object.
+     *
+     * @param fullCommand The full command entered by the user.
+     * @return The command object corresponding to the user's input.
+     * @throws PiggyException If the command is invalid or cannot be parsed.
+     */
     public static Command parse(String fullCommand) throws PiggyException {
         String[] parts = fullCommand.split(Constants.SPACE, 2);
         String commandWord = parts[0].trim();

@@ -1,5 +1,8 @@
 package piggy.util;
 
+/**
+ * Contains constants used throughout the Piggy application.
+ */
 public class Constants {
     // UI-related constants
     public static final String SEPARATOR = "____________________________________________________________";
