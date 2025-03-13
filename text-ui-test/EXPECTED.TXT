@@ -1,22 +1,69 @@
 ____________________________________________________________
- Oink! Hello I'm Piggy! :)
-            (,) 
-            _/
-        .--"_"--.
-      ."   |I|   ".
-     /     |I|     \
-    /      |I|      \
-   ;       |I|       ;
-   |   _   '"'   _   |
-  /|  |\\_,...,_//|  |\
- / |  |-" 0   0 "-|  | \
-(//| /             \ |\\)
- ^ \ |    _..._    | / ^
-    '|  .'     '.  |'
-     \  | () () |  /
-    / '..     .'.' \
-   /' / \"""/ \ \
-  (/ /    """    \ \)
-   ^               ^
- What can I do for you?
+ Oink! Welcome to Piggy's Task Manager! 🐷
+
+                     (,)
+                     _/
+                .--"_"--.
+              ."   |I|   ".
+             /     |I|     \
+            /      |I|      \
+            ;       |I|       ;
+           |   _   '\"'   _   |
+          /|  |\\_,...,_//|  |\
+         / |  |-" 0   0 "-|  | \
+        (//| /             \ |\\)
+          ^ \ |    _..._    | / ^
+             '|  .'     '.  |'
+              \  | () () |  /
+             / '..     .'.' \
+            /' / \"""/ \ \
+           (/ /    """    \ \)
+            ^               ^
+
+        Let's get muddy with some tasks!
+____________________________________________________________
+Squeal! What should we do next?
+____________________________________________________________
+ Oink! This task is now in my snout:
+   [T][ ] Read book
+ Snort! You’ve got 1 tasks in your pen.
+____________________________________________________________
+Squeal! What should we do next?
+____________________________________________________________
+ Oink! This task is now in my snout:
+   [D][ ] Return book (by: 2023-12-31)
+ Snort! You’ve got 2 tasks in your pen.
+____________________________________________________________
+Squeal! What should we do next?
+____________________________________________________________
+ Oink! This task is now in my snout:
+   [E][ ] Team meeting (from: 2023-11-01 to: 2023-11-02)
+ Snort! You’ve got 3 tasks in your pen.
+____________________________________________________________
+Squeal! What should we do next?
+____________________________________________________________
+ Here’s what’s on my mind, oink oink!
+ 1. [T][ ] Read book
+ 2. [D][ ] Return book (by: 2023-12-31)
+ 3. [E][ ] Team meeting (from: 2023-11-01 to: 2023-11-02)
+____________________________________________________________
+Squeal! What should we do next?
+____________________________________________________________
+ Nice! I've marked this task as done:
+   [T][X] Read book
+____________________________________________________________
+Squeal! What should we do next?
+____________________________________________________________
+ Okay! I've unmarked this task:
+   [T][ ] Read book
+____________________________________________________________
+Squeal! What should we do next?
+____________________________________________________________
+ Snort! This task is forgotten in the haystack:
+   [T][ ] Read book
+ Snort! You’ve got 2 tasks in your pen.
+____________________________________________________________
+Squeal! What should we do next?
+____________________________________________________________
+Oink, oink! I'm going for a nap in the mud. See you soon! 🐖
 ____________________________________________________________
