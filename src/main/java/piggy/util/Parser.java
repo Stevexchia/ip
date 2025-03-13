@@ -26,6 +26,8 @@ public class Parser {
                 return new ListCommand();
             case Constants.BYE_COMMAND:
                 return new ExitCommand();
+            case Constants.FINDDATE_COMMAND:
+                return new FindByDateCommand(arguments);
             default:
                 throw new PiggyException(Constants.UNKNOWN_COMMAND_MESSAGE);
         }

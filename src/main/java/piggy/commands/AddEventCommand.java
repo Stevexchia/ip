@@ -7,10 +7,14 @@ import piggy.exceptions.PiggyException;
 import piggy.task.Event;
 import piggy.util.Constants;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 public class AddEventCommand extends Command {
     private final String description;
-    private final String from;
-    private final String to;
+    private final LocalDateTime from;
+    private final LocalDateTime to;
 
     public AddEventCommand(String arguments) throws PiggyException {
         String[] parts = arguments.split(" /from | /to ", 3);
@@ -18,8 +22,13 @@ public class AddEventCommand extends Command {
             throw new PiggyException(Constants.INVALID_FORMAT_EVENT_MESSAGE);
         }
         this.description = parts[0].trim();
-        this.from = parts[1].trim();
-        this.to = parts[2].trim();
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(Constants.DATE_TIME);
+            this.from = LocalDateTime.parse(parts[1].trim(), formatter);
+            this.to = LocalDateTime.parse(parts[2].trim(), formatter);
+        } catch (DateTimeParseException e) {
+            throw new PiggyException(Constants.INVALID_DATE_TIME);
+        }
     }
 
     @Override

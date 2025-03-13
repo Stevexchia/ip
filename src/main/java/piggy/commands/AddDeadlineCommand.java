@@ -7,9 +7,13 @@ import piggy.exceptions.PiggyException;
 import piggy.task.Deadline;
 import piggy.util.Constants;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 public class AddDeadlineCommand extends Command {
     private final String description;
-    private final String by;
+    private final LocalDateTime by;
 
     public AddDeadlineCommand(String arguments) throws PiggyException {
         String[] parts = arguments.split(" /by ", 2);
@@ -17,7 +21,12 @@ public class AddDeadlineCommand extends Command {
             throw new PiggyException(Constants.INVALID_FORMAT_DEADLINE_MESSAGE);
         }
         this.description = parts[0].trim();
-        this.by = parts[1].trim();
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(Constants.DATE_TIME);
+            this.by = LocalDateTime.parse(parts[1].trim(), formatter);
+        } catch (DateTimeParseException e) {
+            throw new PiggyException(Constants.INVALID_DATE_TIME);
+        }
     }
 
     @Override
