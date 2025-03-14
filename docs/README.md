@@ -6,10 +6,10 @@ Welcome to **Piggy**, a chatbot designed to help you manage your tasks efficient
 
 ## 🚀 Quick Start
 
-1. **Download** the latest version of Piggy from [here](#).
+1. **Download** the latest version of Piggy from the JAR file.
 2. **Run** the application by executing the JAR file.
 3. **Type** commands in the command box and press `Enter` to execute them.
-4. Refer to the [Features](#features) section below for a list of commands.
+4. Refer to the [Features](#Features) section below for a list of commands.
 
 ---
 
@@ -121,18 +121,18 @@ Exit the Piggy chatbot.
 
 ## 📋 Command Summary
 
-| Command | Format | Example |
-|---------|--------|---------|
-| Add Todo | `todo <description>` | `todo Read book` |
-| Add Deadline | `deadline <description> /by <yyyy-MM-dd HHmm>` | `deadline Return book /by 2023-12-31 1800` |
-| Add Event | `event <description> /from <yyyy-MM-dd HHmm> /to <yyyy-MM-dd HHmm>` | `event Team meeting /from 2023-11-01 1400 /to 2023-11-01 1600` |
-| List Tasks | `list` | `list` |
-| Mark Task | `mark <task number>` | `mark 1` |
-| Unmark Task | `unmark <task number>` | `unmark 1` |
-| Delete Task | `delete <task number>` | `delete 1` |
-| Find by Keyword | `find <keyword>` | `find book` |
-| Find by Date | `find date <yyyy-MM-dd>` | `find date 2023-12-31` |
-| Exit | `bye` | `bye` |
+| Command         | Format                                                              | Example                                                        |
+|-----------------|---------------------------------------------------------------------|----------------------------------------------------------------|
+| Add Todo        | `todo <description>`                                                | `todo Read book`                                               |
+| Add Deadline    | `deadline <description> /by <yyyy-MM-dd HHmm>`                      | `deadline Return book /by 2023-12-31 1800`                     |
+| Add Event       | `event <description> /from <yyyy-MM-dd HHmm> /to <yyyy-MM-dd HHmm>` | `event Team meeting /from 2023-11-01 1400 /to 2023-11-01 1600` |
+| List Tasks      | `list`                                                              | `list`                                                         |
+| Mark Task       | `mark <task number>`                                                | `mark 1`                                                       |
+| Unmark Task     | `unmark <task number>`                                              | `unmark 1`                                                     |
+| Delete Task     | `delete <task number>`                                              | `delete 1`                                                     |
+| Find by Keyword | `find <keyword>`                                                    | `find book`                                                    |
+| Find by Date    | `find date <yyyy-MM-dd>`                                            | `find date 2023-12-31`                                         |
+| Exit            | `bye`                                                               | `bye`                                                          |
 
 ---
 
